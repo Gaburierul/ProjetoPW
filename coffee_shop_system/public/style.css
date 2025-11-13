@@ -1,0 +1,502 @@
+/* Coffee Talk inspired palette */
+    :root{
+      --ct-bg: #1e1512;        /* deep espresso */
+      --ct-surface: #2b221f;   /* dark wood */
+      --ct-cream: #f3e9dc;     /* light cream text */
+      --ct-tan: #c9a57a;       /* warm tan */
+      --ct-teal: #6fb3ad;      /* muted teal accent */
+      --ct-muted: #9b8576;
+      --card-radius: 14px;
+    }
+
+    body{
+      font-family: 'Merriweather', serif;
+      background: linear-gradient(180deg, var(--ct-bg) 0%, #241815 100%);
+      color: var(--ct-cream);
+      min-height:100vh;
+    }
+
+    .navbar { background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.05)); }
+    .brand-title { font-weight:700; color:var(--ct-cream); letter-spacing:0.6px; }
+
+    .page-container {
+      max-width:1100px;
+      margin: 36px auto;
+      padding: 24px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(43,34,31,0.6), rgba(20,14,12,0.5));
+      border-radius: var(--card-radius);
+      padding: 20px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .search-input { min-width:220px; max-width:420px; }
+    .filter-select { min-width:160px; }
+
+    /* Product grid */
+    .products-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .product-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05));
+      padding: 14px;
+      border-radius: 12px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.6); }
+
+    .product-thumb {
+      height:110px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:10px;
+      color:var(--ct-cream);
+      font-weight:700;
+      font-size:18px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .price-badge {
+      background: linear-gradient(135deg, var(--ct-tan), #b88458);
+      color: #2b1f1a;
+      font-weight:700;
+      padding:6px 10px;
+      border-radius:10px;
+      display:inline-block;
+    }
+
+    .category-chip {
+      font-size:12px;
+      color:var(--ct-cream);
+      background: rgba(255,255,255,0.03);
+      padding:6px 8px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+
+    .stock-small { font-size:12px; color:var(--ct-muted); }
+
+    .empty-state {
+      text-align:center;
+      padding:50px 0;
+      color:var(--ct-muted);
+    }
+
+    /* Modal custom */
+    .modal-content {
+      background: linear-gradient(180deg, var(--ct-surface), #1a0f0d);
+      color: var(--ct-cream);
+      border-radius: 10px;
+      border: none;
+    }
+    .form-control, .form-select {
+      background: rgba(255,255,255,0.02);
+      color: var(--ct-cream);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .btn-primary {
+      background: linear-gradient(90deg,var(--ct-teal), #5aa79f);
+      border: none;
+    }
+    .btn-outline-light {
+      color: var(--ct-cream);
+      border-color: rgba(255,255,255,0.06);
+    }
+
+    /* Small screens */
+    @media (max-width:576px){
+      .controls { flex-direction:column; align-items:stretch; }
+    }
+
+    /* --- Fix geral de cores para tema Coffee Talk --- */
+/* --> Colocar esse bloco ao final do <style> para sobrescrever Bootstrap */
+
+:root{
+  /* garanta que essas variáveis existam; se já existirem, este bloco não altera valores */
+  --ct-bg: #1e1512;
+  --ct-surface: #2b221f;
+  --ct-cream: #f3e9dc;
+  --ct-tan: #c9a57a;
+  --ct-teal: #6fb3ad;
+  --ct-muted: #9b8576;
+}
+
+/* Inputs, selects e textareas — garantir texto claro e placeholder sutil */
+input, textarea, select, .form-control, .form-select {
+  color: var(--ct-cream) !important;
+  background-color: rgba(255,255,255,0.02) !important;
+  border-color: rgba(255,255,255,0.04) !important;
+  caret-color: var(--ct-cream) !important;
+}
+
+/* Placeholder */
+input::placeholder, textarea::placeholder, select::placeholder, .form-control::placeholder {
+  color: var(--ct-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Disabled / readonly fields slightly muted but readable */
+input[disabled], textarea[disabled], .form-control[readonly] {
+  color: var(--ct-muted) !important;
+}
+
+/* Autofill (Chrome) — mantém texto claro e evita fundo amarelo/azul */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--ct-cream) !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.08) inset !important;
+  box-shadow: 0 0 0px 1000px rgba(0,0,0,0.08) inset !important;
+}
+
+/* Forçar cores de títulos e subtítulos */
+h1, h2, h3, h4, h5, .card-heading h4, .card-heading h3 {
+  color: var(--ct-cream) !important;
+}
+
+/* Textos "muted" do tema (subtítulos, pequenos) */
+.text-muted, .small-muted, .small {
+  color: var(--ct-muted) !important;
+}
+
+/* Cabeçalho da tabela e células — garantir legibilidade */
+table thead th {
+  color: var(--ct-cream) !important;
+  background: rgba(0,0,0,0.12) !important;
+}
+table tbody td {
+  color: var(--ct-cream) !important;
+}
+
+/* Botões de borda e textos dentro dos cards */
+.btn-outline-light, .btn-ghost, .notes-btn {
+  color: var(--ct-cream) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* Modal content e inputs dentro do modal */
+.modal-content, .modal-body, .modal-header, .modal-footer {
+  color: var(--ct-cream) !important;
+  background: linear-gradient(180deg, var(--ct-surface), #1a0f0d) !important;
+}
+
+/* Pequena correção para SVGs que herdam cor */
+svg { color: inherit; }
+
+/* Corrige textos gerados por Bootstraps (ex: .form-label que às vezes fica escura em alguns navegadores) */
+.form-label, label {
+  color: var(--ct-cream) !important;
+}
+
+/* Garantir que links dentro dos painéis fiquem visíveis */
+.panel a, .card-link, a {
+  color: var(--ct-cream) !important;
+}
+
+/* Quando houver uso de classes bootstrap .text-dark por engano, mantemos o tema */
+.text-dark {
+  color: var(--ct-cream) !important;
+}
+
+:root{
+      --ct-bg: #1e1512;
+      --ct-surface: #2b221f;
+      --ct-cream: #f3e9dc;
+      --ct-tan: #c9a57a;
+      --ct-teal: #6fb3ad;
+      --ct-muted: #9b8576;
+      --card-radius: 14px;
+    }
+    body{
+      font-family: 'Merriweather', serif;
+      background: linear-gradient(180deg, var(--ct-bg) 0%, #241815 100%);
+      color: var(--ct-cream);
+      min-height:100vh;
+    }
+    .navbar { background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.05)); border-bottom:1px solid rgba(255,255,255,0.02); }
+    .brand-title { font-weight:700; color:var(--ct-cream); letter-spacing:0.6px; }
+
+    .page {
+      max-width:1100px;
+      margin: 36px auto;
+      padding: 18px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(43,34,31,0.6), rgba(20,14,12,0.5));
+      border-radius: var(--card-radius);
+      padding: 18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .heading { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .controls { display:flex; gap:10px; align-items:center; margin-top:12px; }
+    .search-input { min-width:220px; max-width:420px; }
+
+    .table-fixed { max-height:58vh; overflow:auto; display:block; margin-top:14px; }
+    table { width:100%; border-collapse:collapse; }
+    thead th { position:sticky; top:0; background:rgba(0,0,0,0.12); color:var(--ct-cream); backdrop-filter: blur(4px); }
+
+    .badge-status { padding:8px 10px; border-radius:999px; font-weight:600; font-size:13px; }
+    .st-pending { background: rgba(255,255,255,0.04); color: var(--ct-cream); }
+    .st-preparing { background: rgba(107, 166, 160, 0.15); color: var(--ct-teal); border:1px solid rgba(107,166,160,0.08); }
+    .st-served { background: rgba(201,165,122,0.12); color: var(--ct-tan); }
+    .st-canceled { background: rgba(150,80,80,0.12); color: #f1b0a0; }
+
+    .btn-primary {
+      background: linear-gradient(90deg,var(--ct-teal), #5aa79f);
+      border: none;
+    }
+    .btn-outline { border:1px solid rgba(255,255,255,0.04); color:var(--ct-cream); background:transparent; }
+
+    .empty-state { text-align:center; padding:30px 0; color:var(--ct-muted); }
+
+    .modal-content { background: linear-gradient(180deg, var(--ct-surface), #1a0f0d); color: var(--ct-cream); border-radius: 10px; border: none; }
+    .form-control, .form-select {
+      background: rgba(255,255,255,0.02);
+      color: var(--ct-cream);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .small-muted { color:var(--ct-muted); font-size:13px; }
+
+    @media (max-width:576px){
+      .controls { flex-direction:column; align-items:stretch; gap:10px; }
+    }
+
+    :root{
+      --ct-bg: #1e1512;
+      --ct-surface: #2b221f;
+      --ct-cream: #f3e9dc;
+      --ct-tan: #c9a57a;
+      --ct-teal: #6fb3ad;
+      --ct-muted: #9b8576;
+      --card-radius: 14px;
+    }
+    body{
+      font-family: 'Merriweather', serif;
+      background: linear-gradient(180deg, var(--ct-bg) 0%, #241815 100%);
+      color: var(--ct-cream);
+      min-height:100vh;
+    }
+    .navbar { background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.05)); border-bottom:1px solid rgba(255,255,255,0.02); }
+    .brand-title { font-weight:700; color:var(--ct-cream); letter-spacing:0.6px; }
+
+    .page {
+      max-width:1100px;
+      margin: 36px auto;
+      padding: 18px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(43,34,31,0.6), rgba(20,14,12,0.5));
+      border-radius: var(--card-radius);
+      padding: 18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .welcome {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .avatar {
+      width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--ct-tan),#b88458);display:flex;align-items:center;justify-content:center;font-weight:700;color:#2b1f1a;font-size:20px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+    }
+
+    .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:14px; margin-top:16px; }
+    .stat-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05));
+      padding:14px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .stat-icon {
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--ct-teal),#5aa79f);display:flex;align-items:center;justify-content:center;color:var(--ct-cream);font-weight:700;
+    }
+    .stat-title { color:var(--ct-muted); font-size:13px; }
+    .stat-value { font-weight:700; font-size:20px; }
+
+    .quick-links { display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+    .quick-card {
+      background:transparent; border-radius:12px; padding:14px; border:1px solid rgba(255,255,255,0.04); min-width:180px;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .btn-ghost { background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--ct-cream); }
+
+    footer { margin-top:28px; text-align:center; color:var(--ct-muted); font-size:13px; }
+    a.card-link { text-decoration:none; color:inherit; display:block; }
+    .small-muted { color:var(--ct-muted); font-size:13px; }
+    @media (max-width:576px){
+      .welcome { flex-direction:column; align-items:flex-start; gap:8px; }
+    }
+
+    :root{
+      --ct-bg: #1e1512;
+      --ct-surface: #2b221f;
+      --ct-cream: #f3e9dc;
+      --ct-tan: #c9a57a;
+      --ct-teal: #6fb3ad;
+      --ct-muted: #9b8576;
+      --card-radius: 14px;
+    }
+    body{
+      font-family: 'Merriweather', serif;
+      background: linear-gradient(180deg, var(--ct-bg) 0%, #241815 100%);
+      color: var(--ct-cream);
+      min-height:100vh;
+    }
+    .navbar { background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.05)); border-bottom:1px solid rgba(255,255,255,0.02); }
+    .brand-title { font-weight:700; color:var(--ct-cream); letter-spacing:0.6px; }
+
+    .container-page {
+      max-width:1100px;
+      margin: 36px auto;
+      padding: 18px;
+    }
+    .panel {
+      background: linear-gradient(180deg, rgba(43,34,31,0.6), rgba(20,14,12,0.5));
+      border-radius: var(--card-radius);
+      padding: 18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .heading { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .search-input { min-width:220px; max-width:420px; }
+    .table-fixed { max-height:58vh; overflow:auto; display:block; margin-top:14px; }
+
+    table { width:100%; border-collapse:collapse; }
+    thead th { position:sticky; top:0; background:rgba(0,0,0,0.15); color:var(--ct-cream); backdrop-filter: blur(4px); }
+
+    .btn-primary {
+      background: linear-gradient(90deg,var(--ct-teal), #5aa79f);
+      border: none;
+    }
+    .btn-outline { border:1px solid rgba(255,255,255,0.04); color:var(--ct-cream); background:transparent; }
+
+    .notes-btn { font-size:13px; color:var(--ct-cream); border:1px solid rgba(255,255,255,0.04); background:transparent; padding:6px 8px; border-radius:8px; }
+
+    .empty-state { text-align:center; padding:30px 0; color:var(--ct-muted); }
+
+    .modal-content { background: linear-gradient(180deg, var(--ct-surface), #1a0f0d); color: var(--ct-cream); border-radius: 10px; border: none; }
+    .form-control, .form-select {
+      background: rgba(255,255,255,0.02);
+      color: var(--ct-cream);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .small-muted { color:var(--ct-muted); font-size:13px; }
+
+    @media (max-width:576px){
+      .heading { flex-direction:column; align-items:stretch; gap:10px; }
+    }
+
+    /* ---------- Correções para tabelas e controles no tema Coffee Talk ---------- */
+/* Colocar este bloco AO FINAL do <style> (ou em CSS carregado depois do Bootstrap) */
+
+/* 1) Forçar o fundo das células e cabeçalho para tons escuros do tema */
+.table, .table > thead > tr > th, .table > tbody > tr > td {
+  background: transparent !important;
+  color: var(--ct-cream) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* 2) Corrigir cabeçalho (thead) para ficar com o background escuro e texto claro */
+.table thead th {
+  background: rgba(0,0,0,0.18) !important; /* leve brilho escuro */
+  color: var(--ct-cream) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+/* 3) Linhas listradas (striped) — tons suaves e escuros para contraste */
+.table.table-striped > tbody > tr:nth-of-type(odd) {
+  background: rgba(255,255,255,0.01) !important;
+}
+.table.table-striped > tbody > tr:nth-of-type(even) {
+  background: rgba(255,255,255,0.02) !important;
+}
+
+/* 4) Células e texto dos corpo da tabela */
+.table tbody td {
+  color: var(--ct-cream) !important;
+  vertical-align: middle !important;
+}
+
+/* 5) Forçar links/ações dentro da tabela a ficarem visíveis */
+.table a, .table button, .table .btn, td a {
+  color: var(--ct-cream) !important;
+}
+
+/* 6) Corrigir badges/status para terem cor legível */
+.badge-status {
+  color: var(--ct-cream) !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+  background: rgba(255,255,255,0.02) !important;
+}
+
+/* Status específicos (melhor contraste) */
+.st-pending { background: rgba(255,255,255,0.02) !important; color: var(--ct-cream) !important; }
+.st-preparing { background: rgba(107,166,160,0.14) !important; color: var(--ct-teal) !important; border-color: rgba(107,166,160,0.08) !important; }
+.st-served    { background: rgba(201,165,122,0.10) !important; color: var(--ct-tan) !important; border-color: rgba(201,165,122,0.06) !important; }
+.st-canceled  { background: rgba(150,80,80,0.10) !important; color: #f1b0a0 !important; border-color: rgba(150,80,80,0.06) !important; }
+
+/* 7) Forçar estilos de inputs/selects/textareas dentro da tabela/painéis */
+.table .form-control, .form-control, .form-select, input, textarea {
+  background: rgba(255,255,255,0.02) !important;
+  color: var(--ct-cream) !important;
+  border-color: rgba(255,255,255,0.04) !important;
+}
+
+/* 8) Placeholders claros e legíveis */
+::placeholder { color: var(--ct-muted) !important; opacity: 1 !important; }
+
+/* 9) Botões que ficaram muito pálidos (outline / small) */
+.btn-outline-light, .btn-ghost, .btn-outline {
+  color: var(--ct-cream) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+  background: transparent !important;
+}
+
+/* 10) Botões primários com contraste consistente */
+.btn-primary {
+  background: linear-gradient(90deg,var(--ct-teal), #5aa79f) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* 11) Forçar sticky header do thead em dark e legível (em navegadores que não respeitam) */
+.table thead th {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* 12) Evita que classes .text-dark (do Bootstrap) invertam o tema */
+.text-dark { color: var(--ct-cream) !important; }
+
+/* 13) Garante que modals e suas tabelas também herdem o tema */
+.modal-content .table thead th,
+.modal-content .table tbody td {
+  background: transparent !important;
+  color: var(--ct-cream) !important;
+  border-color: rgba(255,255,255,0.05) !important;
+}
+
