@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'coffee_shop');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'abcd1234');
 
 function getPDO(){
     static $pdo = null;
